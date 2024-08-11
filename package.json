@@ -1,0 +1,12 @@
+{
+  "name": "peers-check",
+  "version": "1.0.0",
+  "description": "Quick peer checker for Pinokio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Frosty",
+  "license": "Freeware",
+  "type": "module"
+}
