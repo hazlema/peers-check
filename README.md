@@ -1,6 +1,5 @@
 # Peers-Check
-This not for everyone. <br> 
-It's primary purpose is for debugging.<br>
+This is not for everyone, It's primary purpose is for debugging.<br>
 Creating and testing installers can create multiple entries this will help you clean things.<br>
 
 - Checks for a valid json
