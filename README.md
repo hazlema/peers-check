@@ -10,4 +10,9 @@ Creating and testing installers can create multiple entries this will help you c
 Just extract to your Pinokio directory and it will find all the files automatically.<br><br>
 == Non-destructive, displays information only, it's up to you to fix things. ==
 
+### Install
+put this entire directory under your Pinokio directory
+
+
+![screenshot](assets/path.png)<br>
 ![screenshot](assets/screenshot.png)
