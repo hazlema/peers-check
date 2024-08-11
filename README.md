@@ -8,7 +8,7 @@ Creating and testing installers can create multiple entries this will help you c
 - Checks your drive/drives.json file against the physical directories
 - Checks your physical directories against the json file
 
-Just extract to your Pinokio directory and it will find all the files automatically.<br>
-== Non-destructive, displays information only, it's up tto you to fix things. ==
+Just extract to your Pinokio directory and it will find all the files automatically.<br><br>
+== Non-destructive, displays information only, it's up to you to fix things. ==
 
 ![screenshot](assets/screenshot.png)
