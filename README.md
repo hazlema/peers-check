@@ -13,6 +13,8 @@ Just extract to your Pinokio directory and it will find all the files automatica
 ### Install
 put this entire directory under your Pinokio directory
 
+![screenshot](assets/path.png)
 
-![screenshot](assets/path.png)<br>
+### Screenshot
+
 ![screenshot](assets/screenshot.png)
