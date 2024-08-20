@@ -7,13 +7,16 @@ Creating and testing installers can create multiple entries this will help you c
 - Checks your drive/drives.json file against the physical directories
 - Checks your physical directories against the json file
 
-Just extract to your Pinokio directory and it will find all the files automatically.<br><br>
-== Non-destructive, displays information only, it's up to you to fix things. ==
+### Pinokio Install:
 
-### Install
-put this entire directory under your Pinokio directory
+You can extract this to /pinokio/api and it will integrate with your pinokio install and appear as an application in the pinokio interface.
+
+### Alternative install:
+put this entire directory under your Pinokio directory. And run the app/peer-check.js file.
 
 ![screenshot](assets/path.png)
+
+== Non-destructive, displays information only, it's up to you to fix things. ==
 
 ### Screenshot
 

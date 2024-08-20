@@ -20,6 +20,8 @@ async function findBase() {
 
 	const dirs = [
 		join(process.cwd(), "..", "drive"),
+		join(process.cwd(), "..", "..", "drive"),
+		join(process.cwd(), "..", "..", "..", "drive"),
 		join(process.cwd(), "drive"),
 		process.argv[2]
 	];
