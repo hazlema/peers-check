@@ -120,10 +120,9 @@ async function readJson() {
 
 function orphanScan(dirs) {
     let isOrphan = false;
-
+	
     return readFile(jsonFile, 'utf8')
         .then(rawFile => {
-			console.print("");
             console.print("@X0FStarting Dir to JSON check...");
             // Dir to Json
             for (const dir of dirs) {
