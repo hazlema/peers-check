@@ -132,7 +132,8 @@ async function orphanScan(dirs, json) {
 	}
 
 	// Json to dir
-	rawFile.match(new RegExp("\/([a-z].[0-9]+)\/", "g")).forEach(match => {
+	//rawFile.match(new RegExp("\/([a-z].[0-9]+)\/", "g")).forEach(match => {
+	rawFile.match(new RegExp("[\\\/]{1}([a-z].[0-9]+)[\\\/]{1}", "g")).forEach(match => {
 		match = match.slice(1, -1);
 		if (!(dirs.includes(match))) {
 			console.print(`@X0CX @X0FJSON does not have physical directory: @X0E${match}`);
