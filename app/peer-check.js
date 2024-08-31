@@ -119,55 +119,55 @@ async function readJson() {
 }
 
 function orphanScan(dirs) {
-    let isOrphan = false;
-	
-    return readFile(jsonFile, 'utf8')
-        .then(rawFile => {
-            console.print("@X0FStarting Dir to JSON check...");
-            // Dir to Json
-            for (const dir of dirs) {
-                if (!rawFile.includes(dir)) {
-                    console.print(`@X0CX @X0FDirectory not in JSON: @X0E${dir}`);
-                    isOrphan = true;
-                } else {
-                    console.print(`@X0A✓ @X0FTesting @X0B${dir}`);
-                }
-            }
+	let isOrphan = false;
+
+	return readFile(jsonFile, 'utf8')
+		.then(rawFile => {
+			console.print("@X0FStarting Dir to JSON check...");
+			// Dir to Json
+			for (const dir of dirs) {
+				if (!rawFile.includes(dir)) {
+					console.print(`@X0CX @X0FDirectory not in JSON: @X0E${dir}`);
+					isOrphan = true;
+				} else {
+					console.print(`@X0A✓ @X0FTesting @X0B${dir}`);
+				}
+			}
 
 			if (!isOrphan) {
 				console.print("");
-                console.print("@X0A✓ @X0FEverything looks good");
-            }
-            return rawFile; // Pass rawFile to the next .then()
-        })
-        .then(rawFile => {
+				console.print("@X0A✓ @X0FEverything looks good");
+			}
+			return rawFile; // Pass rawFile to the next .then()
+		})
+		.then(rawFile => {
 			console.print("");
-            console.print("@X0FStarting JSON to Dir check...");
-            // Json to dir
-            const regex = /[\\\/]{1}([a-z].[0-9]+)[\\\/]{1}/gm;
-            const matched = new Set();
-            let match;
+			console.print("@X0FStarting JSON to Dir check...");
+			// Json to dir
+			const regex = /[\\\/]{1}([a-z].[0-9]+)[\\\/]{1}/gm;
+			const matched = new Set();
+			let match;
 
-            while ((match = regex.exec(rawFile)) !== null) {
-                const dirName = match[1];
-                if (!matched.has(dirName)) {
-                    matched.add(dirName);
-                    if (!dirs.includes(dirName)) {
-                        console.print(`@X0CX @X0FA path specified in the JSON does not have physical directory: @X0E${dirName}`);
-                        isOrphan = true;
-                    } else {
-                        console.print(`@X0A✓ @X0FTesting @X0B${dirName}`);
-                    }
-                }
-            }
+			while ((match = regex.exec(rawFile)) !== null) {
+				const dirName = match[1];
+				if (!matched.has(dirName)) {
+					matched.add(dirName);
+					if (!dirs.includes(dirName)) {
+						console.print(`@X0CX @X0FA path specified in the JSON does not have physical directory: @X0E${dirName}`);
+						isOrphan = true;
+					} else {
+						console.print(`@X0A✓ @X0FTesting @X0B${dirName}`);
+					}
+				}
+			}
 
-            if (!isOrphan) {
+			if (!isOrphan) {
 				console.print("");
-                console.print("@X0A✓ @X0FEverything looks good");
-            }
+				console.print("@X0A✓ @X0FEverything looks good");
+			}
 
-            return isOrphan;
-        });
+			return isOrphan;
+		});
 }
 
 // scan rawfile duplicate repos
