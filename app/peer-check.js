@@ -31,7 +31,7 @@ async function findBase() {
 	}
 
 	console.error("Could not find base directory. You can specify it as an argument.");
-	return null;  
+	return null;
 }
 
 console.print = function (str) {
@@ -118,32 +118,58 @@ async function readJson() {
 	return json;
 }
 
-// scan rawfile for all json directories
-async function orphanScan(dirs, json) {
-	var rawFile = (await readFile(jsonFile)).toString();
-	var isOrphan = false
+function orphanScan(dirs) {
+    let isOrphan = false;
+	console.log(jsonFile);
 
-	// Dir to Json
-	for (var dir of dirs) {
-		if (!(rawFile.includes(dir))) {
-			console.print(`@X0CX @X0FDirectory not in JSON: @X0E${dir}`);
-			isOrphan = true
-		}
-	}
+    return readFile(jsonFile, 'utf8')
+        .then(rawFile => {
+			console.print("");
+            console.print("@X0FStarting Dir to JSON check...");
+            // Dir to Json
+            for (const dir of dirs) {
+                if (!rawFile.includes(dir)) {
+                    console.print(`@X0CX @X0FDirectory not in JSON: @X0E${dir}`);
+                    isOrphan = true;
+                } else {
+                    console.print(`@X0A✓ @X0FTesting @X0B${dir}`);
+                }
+            }
 
-	// Json to dir
-	//rawFile.match(new RegExp("\/([a-z].[0-9]+)\/", "g")).forEach(match => {
-	rawFile.match(new RegExp("[\\\/]{1}([a-z].[0-9]+)[\\\/]{1}", "g")).forEach(match => {
-		match = match.slice(1, -1);
-		if (!(dirs.includes(match))) {
-			console.print(`@X0CX @X0FJSON does not have physical directory: @X0E${match}`);
-			isOrphan = true
-		}
-	})
+			if (!isOrphan) {
+				console.print("");
+                console.print("@X0A✓ @X0FEverything looks good");
+            }
+            return rawFile; // Pass rawFile to the next .then()
+        })
+        .then(rawFile => {
+			console.print("");
+            console.print("@X0FStarting JSON to Dir check...");
+            // Json to dir
+            const regex = /[\\\/]{1}([a-z].[0-9]+)[\\\/]{1}/gm;
+            const matched = new Set();
+            let match;
 
-	if (isOrphan === false) {
-		console.print("@X0A✓ @X0FEverything looks good");
-	}
+            while ((match = regex.exec(rawFile)) !== null) {
+                const dirName = match[1];
+                if (!matched.has(dirName)) {
+                    matched.add(dirName);
+                    if (!dirs.includes(dirName)) {
+                        console.print(`@X0CX @X0FA path specified in the JSON does not have physical directory: @X0E${dirName}`);
+                        isOrphan = true;
+                    } else {
+                        console.print(`@X0A✓ @X0FTesting @X0B${dirName}`);
+                    }
+                }
+            }
+
+            if (!isOrphan) {
+				console.print("");
+                console.print("@X0A✓ @X0FEverything looks good");
+            }
+
+            return isOrphan;
+        });
 }
 
 // scan rawfile duplicate repos
@@ -192,5 +218,5 @@ if (await init()) {
 	console.log();
 	console.print("@X0FScanning for orphan directories");
 	console.print("@X0B===============================");
-	await orphanScan(dirs, json);
+	await orphanScan(dirs);
 }
