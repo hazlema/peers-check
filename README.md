@@ -9,6 +9,13 @@ Creating and testing installers can create multiple entries this will help you c
 
 ### Pinokio Install:
 
+**Automatic:**<br>
+Go to discover inside Pinokio, click on install from URL and enter:
+https://github.com/hazlema/peers-check.git
+
+![screenshot](assets/install.png)
+
+**Manual:**<br>
 You can extract this to /pinokio/api and it will integrate with your pinokio install and appear as an application in the pinokio interface.
 
 ### Alternative install:
